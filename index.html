@@ -3,29 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Amalnama - Islamic Daily Companion</title>
-
+  <title>Amalnama - আপনার প্রতিদিনের ইসলামিক সঙ্গী</title>
   <style>
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', Arial, sans-serif;
     }
 
     body {
-      background: #f5f8f6;
-      color: #173b2b;
-      padding-bottom: 30px;
+      background-color: #f2f7f4;
+      color: #1a3328;
+      padding-bottom: 50px;
     }
 
+    /* হেডার অংশ */
     header {
-      background: linear-gradient(135deg, #075c38, #13865b);
+      background: linear-gradient(135deg, #0b5d3b, #138a58);
       color: white;
-      text-align: center;
       padding: 30px 20px;
-      border-radius: 0 0 28px 28px;
+      text-align: center;
+      border-radius: 0 0 25px 25px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     }
 
     header h1 {
@@ -34,468 +34,186 @@
     }
 
     header p {
-      font-size: 15px;
-      opacity: 0.9;
+      font-size: 16px;
+      opacity: 0.95;
     }
 
+    /* মেইন কন্টেইনার */
     .container {
-      max-width: 900px;
-      margin: auto;
-      padding: 20px;
+      max-width: 650px;
+      margin: 25px auto;
+      padding: 0 15px;
     }
 
-    .welcome {
+    /* ওয়েলকাম বক্স */
+    .welcome-box {
       background: white;
+      border-radius: 18px;
       padding: 22px;
-      border-radius: 20px;
-      margin-bottom: 20px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+      text-align: center;
+      margin-bottom: 25px;
+      border-left: 6px solid #10b981;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
     }
 
-    .welcome h2 {
-      margin-bottom: 8px;
-      color: #075c38;
+    .welcome-box h2 {
+      color: #0b5d3b;
+      font-size: 22px;
+      margin-bottom: 10px;
     }
 
-    .welcome p {
-      color: #555;
+    .welcome-box p {
+      font-size: 15px;
+      color: #4b5563;
       line-height: 1.6;
     }
 
-    .progress-box {
-      background: #e6f5ed;
-      padding: 18px;
-      border-radius: 18px;
-      margin-top: 15px;
-    }
-
-    .progress-title {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 10px;
-      font-weight: bold;
-    }
-
-    .progress-bar {
-      height: 12px;
-      background: #d1e5da;
-      border-radius: 20px;
-      overflow: hidden;
-    }
-
-
-    <!-- ==============================================
-     ১. এই CSS অংশটুকু আপনার <style> ... </style> ট্যাগের ভেতরে বসাবেন
-============================================== -->
-<style>
-/* দোয়া ও জিকির বক্স স্টাইল */
-.dua-select-box {
-  width: 100%;
-  padding: 12px;
-  font-size: 15px;
-  border-radius: 10px;
-  border: 1.5px solid #10b981;
-  background-color: #ffffff;
-  color: #333333;
-  outline: none;
-  margin-top: 10px;
-}
-
-.dua-card {
-  background: #f0fdf4;
-  border: 1px solid #bbf7d0;
-  border-radius: 14px;
-  padding: 20px;
-  margin-top: 15px;
-  text-align: center;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-}
-
-.arabic-text {
-  font-size: 26px;
-  color: #047857;
-  margin: 15px 0;
-  direction: rtl;
-  line-height: 1.6;
-  font-weight: bold;
-}
-
-.pronunciation, .meaning {
-  font-size: 15px;
-  margin: 8px 0;
-  line-height: 1.5;
-  color: #1f2937;
-}
-
-.counter-box {
-  margin-top: 20px;
-  padding-top: 15px;
-  border-top: 1px dashed #a7f3d0;
-}
-
-.counter-display {
-  font-size: 45px;
-  font-weight: bold;
-  color: #059669;
-  margin-bottom: 10px;
-}
-
-.counter-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-}
-
-.btn-count {
-  background-color: #10b981;
-  color: white;
-  border: none;
-  padding: 12px 24px;
-  font-size: 16px;
-  font-weight: bold;
-  border-radius: 8px;
-  cursor: pointer;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.btn-count:active {
-  transform: scale(0.95);
-}
-
-.btn-reset {
-  background-color: #ef4444;
-  color: white;
-  border: none;
-  padding: 12px 18px;
-  font-size: 15px;
-  border-radius: 8px;
-  cursor: pointer;
-}
-</style>
-
-
-<!-- ==============================================
-     ২. এই HTML অংশটুকু আপনার বডি (<div class="container">) এর ভেতরে দোয়ার জায়গায় বসাবেন
-============================================== -->
-<section style="margin-top: 25px;">
-  <h2>🤲 দৈনন্দিন দোয়া ও ডিজিটাল জিকির</h2>
-  <p style="font-size: 14px; color: #666;">নিচের ড্রপডাউন থেকে দোয়া বা জিকির নির্বাচন করুন এবং কাউন্টার দিয়ে হিসাব রাখুন।</p>
-
-  <!-- ড্রপডাউন মেনু -->
-  <div>
-    <select id="duaSelect" class="dua-select-box" onchange="switchDua()">
-      <option value="sleep">১. ঘুমানোর সময় পড়ার দোয়া</option>
-      <option value="wake">২. ঘুম থেকে ওঠার পর পড়ার দোয়া</option>
-      <option value="before_eat">৩. খাবার শুরু করার দোয়া</option>
-      <option value="after_eat">৪. খাবার শেষ করার দোয়া</option>
-      <option value="before_wudu">৫. ওজু শুরু করার দোয়া</option>
-      <option value="after_wudu">৬. ওজু শেষ করার দোয়া</option>
-      <option value="shower">৭. গোসল করার আগের দোয়া/নিয়ত</option>
-      <option value="enter_toilet">৮. বাথরুমে প্রবেশের দোয়া</option>
-      <option value="exit_toilet">৯. বাথরুম থেকে বের হওয়ার দোয়া</option>
-      <option value="subhanallah">১০. জিকির: সুবহানাল্লাহ (Subhanallah)</option>
-      <option value="alhamdulillah">১১. জিকির: আলহামদুলিল্লাহ (Alhamdulillah)</option>
-      <option value="allahuakbar">১২. জিকির: আল্লাহু আকবার (Allahu Akbar)</option>
-      <option value="astagfirullah">১৩. জিকির: আস্তাগফিরুল্লাহ (Astagfirullah)</option>
-    </select>
-  </div>
-
-  <!-- দোয়া ও কাউন্টার কার্ড -->
-  <div class="dua-card">
-    <h3 id="duaTitle">১. ঘুমানোর সময় পড়ার দোয়া</h3>
-    
-    <p class="arabic-text" id="duaArabic">اللَّهُمَّ بِاسْمِكَ أَمُوتُ وَأَحْيَا</p>
-    <p class="pronunciation"><b>উচ্চারণ:</b> <span id="duaPron">আল্লাহুম্মা বিসমিকা আমূতু ওয়া এহ্ইয়া।</span></p>
-    <p class="meaning"><b>অর্থ:</b> <span id="duaMeaning">হে আল্লাহ! আপনার নাম নিয়েই আমি মৃত্যুবরণ করছি (ঘুমাচ্ছি) এবং আপনার নাম নিয়েই জীবিত (জাগ্রত) হচ্ছি।</span></p>
-
-    <!-- জিকির কাউন্টার -->
-    <div class="counter-box">
-      <div class="counter-display" id="counterValue">0</div>
-      <div class="counter-buttons">
-        <button class="btn-count" onclick="addCount()">+ জিকির (গণনা)</button>
-        <button class="btn-reset" onclick="resetCount()">Reset</button>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ==============================================
-     ৩. এই JavaScript অংশটুকু আপনার <script> ... </script> ট্যাগের ভেতরে বসাবেন
-============================================== -->
-<script>
-const duaData = {
-  sleep: {
-    title: "১. ঘুমানোর সময় পড়ার দোয়া",
-    arabic: "اللَّهُمَّ بِاسْمِكَ أَمُوتُ وَأَحْيَا",
-    pron: "আল্লাহুম্মা বিসমিকা আমূতু ওয়া এহ্ইয়া।",
-    meaning: "হে আল্লাহ! আপনার নাম নিয়েই আমি মৃত্যুবরণ করছি (ঘুমাচ্ছি) এবং আপনার নাম নিয়েই জীবিত (জাগ্রত) হচ্ছি।"
-  },
-  wake: {
-    title: "২. ঘুম থেকে ওঠার পর পড়ার দোয়া",
-    arabic: "الْحَمْدُ لِلَّهِ الَّذِي أَحْيَانَا بَعْدَ مَا أَمَاتَنَا وَإِلَيْهِ النُّشُورُ",
-    pron: "আলহামদু লিল্লাহিল্লাযী আহ ইয়ানা বা'দা মা আমাতানা ওয়া ইলাইহিন নুশূর।",
-    meaning: "সমস্ত প্রশংসা ওই আল্লাহর জন্য, যিনি মৃত্যুর (ঘুমের) পর আমাদের পুনর্জীবন দান করলেন এবং তাঁর দিকেই সবার প্রত্যাবর্তন।"
-  },
-  before_eat: {
-    title: "৩. খাবার শুরু করার দোয়া",
-    arabic: "بِسْمِ اللهِ وَعَلَى بَرَكَةِ اللهِ",
-    pron: "বিসমিল্লাহি ওয়া 'আলা বারাকাতিল্লাহ।",
-    meaning: "আল্লাহর নামে এবং আল্লাহর বরকতের ওপর ভিত্তি করে খাওয়া শুরু করছি।"
-  },
-  after_eat: {
-    title: "৪. খাবার শেষ করার দোয়া",
-    arabic: "الْحَمْدُ لِلَّهِ الَّذِي أَطْعَمَنَا وَسَقَانَا وَجَعَلَنَا مِنَ الْمُسْلِمِينَ",
-    pron: "আলহামদু লিল্লাহিল্লাযী আত'অমানা ওয়া সাক্বানা ওয়া জা'আলানা মিনাল মুসলিমীন।",
-    meaning: "সমস্ত প্রশংসা আল্লাহর জন্য, যিনি আমাদের খাইয়েছেন, পান করিয়েছেন এবং মুসলমানদের অন্তর্ভুক্ত করেছেন।"
-  },
-  before_wudu: {
-    title: "৫. ওজু শুরু করার দোয়া",
-    arabic: "بِسْمِ اللهِ الرَّحْمَنِ الرَّحِيمِ",
-    pron: "বিসমিল্লাহির রহমানির রাহিম।",
-    meaning: "পরম করুণাময় অসীম দয়ালু আল্লাহর নামে শুরু করছি।"
-  },
-  after_wudu: {
-    title: "৬. ওজু শেষ করার দোয়া",
-    arabic: "أَشْهَدُ أَنْ لاَ إِلَهَ إِلاَّ اللَّهُ وَأَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ",
-    pron: "আশহাদু আল-লা ইলাহা ইল্লাল্লাহু ওয়া আশহাদু আন্না মুহাম্মাদান 'আবদুহু ওয়া রাসূলুহু।",
-    meaning: "আমি সাক্ষ্য দিচ্ছি যে আল্লাহ ছাড়া কোনো উপাস্য নেই এবং মুহাম্মদ (সাঃ) তাঁর বান্দা ও রাসূল।"
-  },
-  shower: {
-    title: "৭. গোসল করার আগের দোয়া/নিয়ত",
-    arabic: "نَوَيْتُ الْغُسْلَ لِرَفْعِ الْجَنَابَةِ",
-    pron: "নাওয়াইতুল গুসলা লিরাফ'ইল জানাবাত।",
-    meaning: "আমি পবিত্রতা অর্জনের উদ্দেশ্যে গোসলের নিয়ত করছি।"
-  },
-  enter_toilet: {
-    title: "৮. বাথরুমে প্রবেশের দোয়া",
-    arabic: "اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْخُبُثِ وَالْخَبَائِثِ",
-    pron: "আল্লাহুম্মা ইন্নি আ'উযু বিকামিনাল খুবুসি ওয়াল খাবায়িস।",
-    meaning: "হে আল্লাহ! আমি আপনার কাছে অপবিত্র শয়তানের অনিষ্ট থেকে আশ্রয় চাচ্ছি।"
-  },
-  exit_toilet: {
-    title: "৯. বাথরুম থেকে বের হওয়ার দোয়া",
-    arabic: "غُفْرَانَكَ ، الْحَمْدُ لِلَّهِ الَّذِي أَذْهَبَ عَنِّي الأَذَى وَعَافَانِي",
-    pron: "গুফরানাকা, আলহামদু লিল্লাহিল্লাযী আজহাবা 'আন্নিল আজা ওয়া 'আফানী।",
-    meaning: "হে আল্লাহ! আমি আপনার কাছে ক্ষমা চাই। সমস্ত প্রশংসা আল্লাহর যিনি আমার কষ্ট দূর করেছেন এবং আমাকে সুস্থতা দিয়েছেন।"
-  },
-  subhanallah: {
-    title: "১০. জিকির: সুবহানাল্লাহ",
-    arabic: "سُبْحَانَ اللهِ",
-    pron: "সুবহানাল্লাহ।",
-    meaning: "আল্লাহ অতি পবিত্র।"
-  },
-  alhamdulillah: {
-    title: "১১. জিকির: আলহামদুলিল্লাহ",
-    arabic: "الْحَمْدُ لِلَّهِ",
-    pron: "আলহামদুলিল্লাহ।",
-    meaning: "সমস্ত প্রশংসা একমাত্র আল্লাহর জন্য।"
-  },
-  allahuakbar: {
-    title: "১২. জিকির: আল্লাহু আকবার",
-    arabic: "اللهُ أَكْبَرُ",
-    pron: "আল্লাহু আকবার।",
-    meaning: "আল্লাহ সবচেয়ে মহান।"
-  },
-  astagfirullah: {
-    title: "১৩. জিকির: আস্তাগফিরুল্লাহ",
-    arabic: "أَسْتَغْفِرُ اللهَ",
-    pron: "আস্তাগফিরুল্লাহ।",
-    meaning: "আমি আল্লাহর কাছে ক্ষমা প্রার্থনা করছি।"
-  }
-};
-
-let currentCount = 0;
-
-function switchDua() {
-  const selectedKey = document.getElementById("duaSelect").value;
-  const selectedDua = duaData[selectedKey];
-
-  document.getElementById("duaTitle").innerText = selectedDua.title;
-  document.getElementById("duaArabic").innerText = selectedDua.arabic;
-  document.getElementById("duaPron").innerText = selectedDua.pron;
-  document.getElementById("duaMeaning").innerText = selectedDua.meaning;
-
-  resetCount();
-}
-
-function addCount() {
-  currentCount++;
-  document.getElementById("counterValue").innerText = currentCount;
-  if (navigator.vibrate) {
-    navigator.vibrate(30);
-  }
-}
-
-function resetCount() {
-  currentCount = 0;
-  document.getElementById("counterValue").innerText = currentCount;
-}
-</script>
-  
-
-    #progressFill {
-      height: 100%;
-      width: 0%;
-      background: #0b7d4f;
-      border-radius: 20px;
-      transition: 0.3s;
-    }
-
+    /* সেকশন টাইটেল */
     .section-title {
-      margin: 25px 0 12px;
-      color: #075c38;
+      font-size: 22px;
+      color: #0b5d3b;
+      margin: 35px 0 18px 0;
+      padding-bottom: 8px;
+      border-bottom: 3px solid #10b981;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
-    }
-
+    /* প্রতিটি জিকির ও দোয়ার বড় বক্স (Card) */
     .card {
       background: white;
-      padding: 18px;
-      border-radius: 18px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+      border-radius: 20px;
+      padding: 25px;
+      margin-bottom: 25px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      border: 1px solid #d1fae5;
+      text-align: center;
     }
 
-    .card h3 {
-      color: #075c38;
-      margin-bottom: 8px;
+    .card-tag {
+      background: #e6f4ea;
+      color: #0b5d3b;
+      font-size: 18px;
+      font-weight: bold;
+      padding: 8px 18px;
+      border-radius: 25px;
+      display: inline-block;
+      margin-bottom: 15px;
     }
 
-    .card p {
-      color: #666;
-      font-size: 14px;
+    .arabic-text {
+      font-size: 30px;
+      color: #0b5d3b;
+      margin: 18px 0;
+      direction: rtl;
+      font-weight: bold;
+      line-height: 1.8;
+    }
+
+    .pronunciation {
+      font-size: 16px;
+      color: #374151;
+      margin-bottom: 10px;
       line-height: 1.5;
     }
 
-    .prayer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 12px 0;
-      border-bottom: 1px solid #eee;
-    }
-
-    .prayer:last-child {
-      border-bottom: none;
-    }
-
-    .prayer-name {
-      font-weight: bold;
-    }
-
-    .check-btn {
-      border: none;
-      background: #e6f5ed;
-      color: #075c38;
-      padding: 8px 14px;
-      border-radius: 20px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-
-    .check-btn.done {
-      background: #075c38;
-      color: white;
-    }
-
-    .zikr {
-      text-align: center;
-    }
-
-    #zikrCount {
-      font-size: 45px;
-      font-weight: bold;
-      color: #075c38;
-      margin: 15px;
-    }
-
-    .zikr button {
-      border: none;
-      background: #075c38;
-      color: white;
-      padding: 12px 25px;
-      border-radius: 25px;
+    .meaning {
       font-size: 16px;
-      cursor: pointer;
-      margin: 4px;
+      color: #1f2937;
+      margin-bottom: 20px;
+      line-height: 1.6;
+      background: #f9fafb;
+      padding: 12px;
+      border-radius: 10px;
     }
 
-    .zikr .reset {
-      background: #ddd;
-      color: #333;
-    }
-
-    .reminder {
-      background: linear-gradient(135deg, #fff7d6, #fff);
-      border-left: 5px solid #d6a800;
+    /* জিকির কাউন্টার অংশ */
+    .counter-box {
+      background: #f0fdf4;
       padding: 18px;
       border-radius: 15px;
-      line-height: 1.6;
-    }
-
-    .dua {
-      background: #f0f8f4;
-      padding: 18px;
-      border-radius: 16px;
-      line-height: 1.8;
-      text-align: center;
-    }
-
-    .goal {
+      border: 1px dashed #34d399;
       margin-top: 15px;
     }
 
-    .goal label {
-      display: block;
-      margin-bottom: 8px;
+    .count-number {
+      font-size: 42px;
       font-weight: bold;
+      color: #059669;
+      margin-bottom: 12px;
     }
 
-    .goal input {
-      width: 100%;
-      padding: 12px;
-      border: 1px solid #ddd;
-      border-radius: 12px;
-      outline: none;
+    .btn-group {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
     }
 
-    .save-btn {
-      margin-top: 10px;
-      width: 100%;
-      border: none;
-      background: #075c38;
+    .btn-count {
+      background: #10b981;
       color: white;
-      padding: 12px;
+      border: none;
+      padding: 14px 28px;
+      font-size: 18px;
+      font-weight: bold;
       border-radius: 12px;
-      font-size: 15px;
       cursor: pointer;
+      box-shadow: 0 3px 8px rgba(16, 185, 129, 0.3);
+      transition: 0.2s;
+      flex: 2;
     }
 
+    .btn-count:active {
+      transform: scale(0.96);
+    }
+
+    .btn-reset {
+      background: #ef4444;
+      color: white;
+      border: none;
+      padding: 14px 20px;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 12px;
+      cursor: pointer;
+      flex: 1;
+    }
+
+    /* ডেভেলপার তথ্য (ফুটার) */
     footer {
+      background: #0b5d3b;
+      color: white;
       text-align: center;
-      margin-top: 30px;
-      color: #777;
-      font-size: 13px;
+      padding: 25px 15px;
+      margin-top: 50px;
+      border-radius: 20px 20px 0 0;
     }
 
-    @media (max-width: 600px) {
-      .grid {
-        grid-template-columns: 1fr;
-      }
+    footer h3 {
+      font-size: 18px;
+      margin-bottom: 8px;
+      color: #a7f3d0;
+    }
 
-      header h1 {
-        font-size: 27px;
-      }
+    footer p {
+      font-size: 14px;
+      opacity: 0.9;
+      line-height: 1.6;
+    }
+
+    .dev-credits {
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid #15803d;
+      font-size: 13px;
+      color: #d1fae5;
     }
   </style>
 </head>
-
 <body>
 
+  <!-- মূল হেডার -->
   <header>
     <h1>🌙 Amalnama</h1>
     <p>আপনার প্রতিদিনের ইসলামিক সঙ্গী</p>
@@ -503,247 +221,139 @@ function resetCount() {
 
   <div class="container">
 
-    <div class="welcome">
+    <!-- ওয়েলকাম মেসেজ -->
+    <div class="welcome-box">
       <h2>আসসালামু আলাইকুম 🌿</h2>
-      <p>
-        আজকের ভালো কাজগুলো মনে রাখুন, নামাজ ও আমল ট্র্যাক করুন
-        এবং প্রতিদিন নিজেকে আরও ভালো করার চেষ্টা করুন।
-      </p>
-
-      <div class="progress-box">
-        <div class="progress-title">
-          <span>আজকের অগ্রগতি</span>
-          <span id="progressText">0%</span>
-        </div>
-
-        <div class="progress-bar">
-          <div id="progressFill"></div>
-        </div>
-      </div>
-
-      <div class="goal">
-        <label>🎯 আজকের Daily Goal</label>
-        <input
-          type="text"
-          id="dailyGoal"
-          placeholder="আজকের লক্ষ্য লিখুন..."
-        >
-        <button class="save-btn" onclick="saveGoal()">
-          লক্ষ্য সংরক্ষণ করুন
-        </button>
-      </div>
+      <p>আজকের ভালো কাজগুলো মনে রাখুন, দৈনন্দিন দোয়া ও জিকির নিয়মিত আদায় করুন এবং নিজেকে সবসময় আল্লাহর স্মরণে রাখুন।</p>
     </div>
 
-    <h2 class="section-title">🕌 আজকের নামাজ</h2>
+    <!-- জিকির সেকশন -->
+    <h2 class="section-title">📿 দৈনন্দিন জিকিরসমূহ</h2>
 
+    <!-- ১. সুবহানাল্লাহ -->
     <div class="card">
-
-      <div class="prayer">
-        <span class="prayer-name">ফজর</span>
-        <button class="check-btn" onclick="togglePrayer(this)">সম্পন্ন</button>
+      <div class="card-tag">১. জিকির: সুবহানাল্লাহ</div>
+      <p class="arabic-text">سُبْحَانَ اللهِ</p>
+      <p class="pronunciation"><b>উচ্চারণ:</b> সুবহানাল্লাহ।</p>
+      <p class="meaning"><b>অর্থ:</b> আল্লাহ অতি পবিত্র ও মহান।</p>
+      <div class="counter-box">
+        <div class="count-number" id="count-subhanallah">0</div>
+        <div class="btn-group">
+          <button class="btn-count" onclick="increaseCount('count-subhanallah')">+ জিকির করুন</button>
+          <button class="btn-reset" onclick="resetSingleCount('count-subhanallah')">Reset</button>
+        </div>
       </div>
-
-      <div class="prayer">
-        <span class="prayer-name">যোহর</span>
-        <button class="check-btn" onclick="togglePrayer(this)">সম্পন্ন</button>
-      </div>
-
-      <div class="prayer">
-        <span class="prayer-name">আসর</span>
-        <button class="check-btn" onclick="togglePrayer(this)">সম্পন্ন</button>
-      </div>
-
-      <div class="prayer">
-        <span class="prayer-name">মাগরিব</span>
-        <button class="check-btn" onclick="togglePrayer(this)">সম্পন্ন</button>
-      </div>
-
-      <div class="prayer">
-        <span class="prayer-name">এশা</span>
-        <button class="check-btn" onclick="togglePrayer(this)">সম্পন্ন</button>
-      </div>
-
     </div>
 
-    <h2 class="section-title">📖 আজকের আমল</h2>
-
-    <div class="grid">
-
-      <div class="card">
-        <h3>📖 কুরআন</h3>
-        <p>আজ কুরআন তিলাওয়াত করার লক্ষ্য রাখুন।</p>
-        <button class="check-btn" onclick="togglePrayer(this)">
-          সম্পন্ন
-        </button>
+    <!-- ২. আলহামদুলিল্লাহ -->
+    <div class="card">
+      <div class="card-tag">২. জিকির: আলহামদুলিল্লাহ</div>
+      <p class="arabic-text">الْحَمْدُ لِلَّهِ</p>
+      <p class="pronunciation"><b>উচ্চারণ:</b> আলহামদুলিল্লাহ।</p>
+      <p class="meaning"><b>অর্থ:</b> সমস্ত প্রশংসা একমাত্র আল্লাহর জন্য।</p>
+      <div class="counter-box">
+        <div class="count-number" id="count-alhamdulillah">0</div>
+        <div class="btn-group">
+          <button class="btn-count" onclick="increaseCount('count-alhamdulillah')">+ জিকির করুন</button>
+          <button class="btn-reset" onclick="resetSingleCount('count-alhamdulillah')">Reset</button>
+        </div>
       </div>
-
-      <div class="card">
-        <h3>🤲 দোয়া</h3>
-        <p>আল্লাহর কাছে নিজের ও অন্যদের জন্য দোয়া করুন।</p>
-        <button class="check-btn" onclick="togglePrayer(this)">
-          সম্পন্ন
-        </button>
-      </div>
-
-      <div class="card">
-        <h3>📿 যিকির</h3>
-        <p>নিয়মিত যিকির করার চেষ্টা করুন।</p>
-        <button class="check-btn" onclick="togglePrayer(this)">
-          সম্পন্ন
-        </button>
-      </div>
-
-      <div class="card">
-        <h3>❤️ ভালো কাজ</h3>
-        <p>আজ অন্তত একটি ভালো কাজ করার চেষ্টা করুন।</p>
-        <button class="check-btn" onclick="togglePrayer(this)">
-          সম্পন্ন
-        </button>
-      </div>
-
     </div>
 
-    <h2 class="section-title">📿 যিকির কাউন্টার</h2>
-
-    <div class="card zikr">
-
-      <p>যিকির গুনতে নিচের বোতামে চাপ দিন</p>
-
-      <div id="zikrCount">0</div>
-
-      <button onclick="increaseZikr()">+ যিকির</button>
-
-      <button class="reset" onclick="resetZikr()">
-        Reset
-      </button>
-
-    </div>
-
-    <h2 class="section-title">🌿 আজকের স্মরণ</h2>
-
-    <div class="reminder">
-      <strong>আজকের Reminder:</strong><br>
-      প্রতিদিন ছোট ছোট ভালো কাজও গুরুত্বপূর্ণ।
-      নিজের আমল নিয়মিত করার চেষ্টা করুন।
-    </div>
-
-    <h2 class="section-title">🤲 দোয়া</h2>
-
-    <div class="dua">
-      <strong>رَبِّ زِدْنِي عِلْمًا</strong>
-      <br><br>
-      “হে আমার রব, আমার জ্ঞান বৃদ্ধি করুন।”
-    </div>
-
-    <h2 class="section-title">✨ আরও কিছু</h2>
-
-    <div class="grid">
-
-      <div class="card">
-        <h3>📊 Progress</h3>
-        <p>আজ কতগুলো আমল সম্পন্ন করেছেন তা উপরে দেখতে পারবেন।</p>
+    <!-- ৩. আল্লাহু আকবার -->
+    <div class="card">
+      <div class="card-tag">৩. জিকির: আল্লাহু আকবার</div>
+      <p class="arabic-text">اللهُ أَكْبَرُ</p>
+      <p class="pronunciation"><b>উচ্চারণ:</b> আল্লাহু আকবার।</p>
+      <p class="meaning"><b>অর্থ:</b> আল্লাহ সবচেয়ে মহান।</p>
+      <div class="counter-box">
+        <div class="count-number" id="count-allahuakbar">0</div>
+        <div class="btn-group">
+          <button class="btn-count" onclick="increaseCount('count-allahuakbar')">+ জিকির করুন</button>
+          <button class="btn-reset" onclick="resetSingleCount('count-allahuakbar')">Reset</button>
+        </div>
       </div>
-
-      <div class="card">
-        <h3>🧠 ইসলামিক Quiz</h3>
-        <p>পরবর্তী ভার্সনে এখানে ছোট ইসলামিক কুইজ যোগ করা হবে।</p>
-      </div>
-
     </div>
 
-    <footer>
-      Amalnama © 2026<br>
-      Islamic Daily Companion
-    </footer>
+    <!-- ৪. আস্তাগফিরুল্লাহ -->
+    <div class="card">
+      <div class="card-tag">৪. জিকির: আস্তাগফিরুল্লাহ</div>
+      <p class="arabic-text">أَسْتَغْفِرُ اللهَ</p>
+      <p class="pronunciation"><b>উচ্চারণ:</b> আস্তাগফিরুল্লাহ।</p>
+      <p class="meaning"><b>অর্থ:</b> আমি মহান আল্লাহর কাছে ক্ষমা প্রার্থনা করছি।</p>
+      <div class="counter-box">
+        <div class="count-number" id="count-astagfirullah">0</div>
+        <div class="btn-group">
+          <button class="btn-count" onclick="increaseCount('count-astagfirullah')">+ জিকির করুন</button>
+          <button class="btn-reset" onclick="resetSingleCount('count-astagfirullah')">Reset</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- দোয়া সেকশন -->
+    <h2 class="section-title">🤲 দৈনন্দিন প্রয়োজনীয় দোয়া</h2>
+
+    <!-- ১. ঘুমানোর দোয়া -->
+    <div class="card">
+      <div class="card-tag">১. ঘুমানোর সময় পড়ার দোয়া</div>
+      <p class="arabic-text">اللَّهُمَّ بِاسْمِكَ أَمُوتُ وَأَحْيَا</p>
+      <p class="pronunciation"><b>উচ্চারণ:</b> আল্লাহুম্মা বিসমিকা আমূতু ওয়া এহ্ইয়া।</p>
+      <p class="meaning"><b>অর্থ:</b> হে আল্লাহ! আপনার নাম নিয়েই আমি মৃত্যুবরণ করছি (ঘুমাচ্ছি) এবং আপনার নাম নিয়েই জীবিত (জাগ্রত) হচ্ছি।</p>
+    </div>
+
+    <!-- ২. ঘুম থেকে ওঠার দোয়া -->
+    <div class="card">
+      <div class="card-tag">২. ঘুম থেকে ওঠার পর পড়ার দোয়া</div>
+      <p class="arabic-text">الْحَمْدُ لِلَّهِ الَّذِي أَحْيَانَا بَعْدَ مَا أَمَاتَنَا وَإِلَيْهِ النُّشُورُ</p>
+      <p class="pronunciation"><b>উচ্চারণ:</b> আলহামদু লিল্লাহিল্লাযী আহ ইয়ানা বা'দা মা আমাতানা ওয়া ইলাইহিন নুশূর।</p>
+      <p class="meaning"><b>অর্থ:</b> সমস্ত প্রশংসা ওই আল্লাহর জন্য, যিনি মৃত্যুর (ঘুমের) পর আমাদের পুনর্জীবন দান করলেন এবং তাঁর দিকেই সবার প্রত্যাবর্তন।</p>
+    </div>
+
+    <!-- ৩. খাবার শুরু করার দোয়া -->
+    <div class="card">
+      <div class="card-tag">৩. খাবার শুরু করার দোয়া</div>
+      <p class="arabic-text">بِسْمِ اللهِ وَعَلَى بَرَكَةِ اللهِ</p>
+      <p class="pronunciation"><b>উচ্চারণ:</b> বিসমিল্লাহি ওয়া 'আলা বারাকাতিল্লাহ।</p>
+      <p class="meaning"><b>অর্থ:</b> আল্লাহর নামে এবং আল্লাহর বরকতের ওপর ভিত্তি করে খাওয়া শুরু করছি।</p>
+    </div>
+
+    <!-- ৪. খাবার শেষ করার দোয়া -->
+    <div class="card">
+      <div class="card-tag">৪. খাবার শেষ করার দোয়া</div>
+      <p class="arabic-text">الْحَمْدُ لِلَّهِ الَّذِي أَطْعَمَنَا وَسَقَانَا وَجَعَلَنَا مِنَ الْمُسْلِمِينَ</p>
+      <p class="pronunciation"><b>উচ্চারণ:</b> আলহামদু লিল্লাহিল্লাযী আত'অমানা ওয়া সাক্বানা ওয়া জা'আলানা মিনাল মুসলিমীন।</p>
+      <p class="meaning"><b>অর্থ:</b> সমস্ত প্রশংসা আল্লাহর জন্য, যিনি আমাদের খাইয়েছেন, পান করিয়েছেন এবং মুসলমানদের অন্তর্ভুক্ত করেছেন।</p>
+    </div>
 
   </div>
 
+  <!-- ফুটার এবং তৈরিকারকের তথ্য -->
+  <footer>
+    <h3>Amalnama © 2026</h3>
+    <p>আপনার প্রতিদিনের আমল ও ইবাদত সহজ করার জন্য নির্মিত।</p>
+    <div class="dev-credits">
+      <p><b>ওয়েবসাইটটি তৈরি করেছেন:</b> মোসাম্মত রঞ্জিতা আক্তার রুনা</p>
+      <p><b>পিতা:</b> মোহাম্মদ রবিউল ইসলাম | <b>মাতা:</b> লাকি বেগম</p>
+    </div>
+  </footer>
+
   <script>
+    // জিকিরের গণনা বাড়ানোর ফাংশন
+    function increaseCount(id) {
+      let countElement = document.getElementById(id);
+      let currentVal = parseInt(countElement.innerText);
+      countElement.innerText = currentVal + 1;
 
-    let completed = 0;
-
-    const totalTasks = 9;
-
-    function togglePrayer(button) {
-
-      if (button.classList.contains("done")) {
-
-        button.classList.remove("done");
-        button.innerText = "সম্পন্ন";
-        completed--;
-
-      } else {
-
-        button.classList.add("done");
-        button.innerText = "✓ সম্পন্ন";
-        completed++;
-
-      }
-
-      updateProgress();
-    }
-
-    function updateProgress() {
-
-      let percentage =
-        Math.round((completed / totalTasks) * 100);
-
-      document.getElementById("progressFill").style.width =
-        percentage + "%";
-
-      document.getElementById("progressText").innerText =
-        percentage + "%";
-    }
-
-    let zikr = 0;
-
-    function increaseZikr() {
-
-      zikr++;
-
-      document.getElementById("zikrCount").innerText =
-        zikr;
-    }
-
-    function resetZikr() {
-
-      zikr = 0;
-
-      document.getElementById("zikrCount").innerText =
-        zikr;
-    }
-
-    function saveGoal() {
-
-      const goal =
-        document.getElementById("dailyGoal").value;
-
-      if (goal.trim() === "") {
-
-        alert("দয়া করে আপনার আজকের লক্ষ্য লিখুন।");
-
-      } else {
-
-        localStorage.setItem("dailyGoal", goal);
-
-        alert("আপনার Daily Goal সংরক্ষণ করা হয়েছে।");
+      if (navigator.vibrate) {
+        navigator.vibrate(35);
       }
     }
 
-    window.onload = function() {
-
-      const savedGoal =
-        localStorage.getItem("dailyGoal");
-
-      if (savedGoal) {
-
-        document.getElementById("dailyGoal").value =
-          savedGoal;
-      }
-
-    };
-
+    // জিকির রিসেট করার ফাংশন
+    function resetSingleCount(id) {
+      document.getElementById(id).innerText = 0;
+    }
   </script>
-
 </body>
   </html>
+      
