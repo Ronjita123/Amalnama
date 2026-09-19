@@ -83,6 +83,257 @@
       overflow: hidden;
     }
 
+
+    <!-- ==============================================
+     ১. এই CSS অংশটুকু আপনার <style> ... </style> ট্যাগের ভেতরে বসাবেন
+============================================== -->
+<style>
+/* দোয়া ও জিকির বক্স স্টাইল */
+.dua-select-box {
+  width: 100%;
+  padding: 12px;
+  font-size: 15px;
+  border-radius: 10px;
+  border: 1.5px solid #10b981;
+  background-color: #ffffff;
+  color: #333333;
+  outline: none;
+  margin-top: 10px;
+}
+
+.dua-card {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 14px;
+  padding: 20px;
+  margin-top: 15px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.arabic-text {
+  font-size: 26px;
+  color: #047857;
+  margin: 15px 0;
+  direction: rtl;
+  line-height: 1.6;
+  font-weight: bold;
+}
+
+.pronunciation, .meaning {
+  font-size: 15px;
+  margin: 8px 0;
+  line-height: 1.5;
+  color: #1f2937;
+}
+
+.counter-box {
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px dashed #a7f3d0;
+}
+
+.counter-display {
+  font-size: 45px;
+  font-weight: bold;
+  color: #059669;
+  margin-bottom: 10px;
+}
+
+.counter-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.btn-count {
+  background-color: #10b981;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.btn-count:active {
+  transform: scale(0.95);
+}
+
+.btn-reset {
+  background-color: #ef4444;
+  color: white;
+  border: none;
+  padding: 12px 18px;
+  font-size: 15px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+</style>
+
+
+<!-- ==============================================
+     ২. এই HTML অংশটুকু আপনার বডি (<div class="container">) এর ভেতরে দোয়ার জায়গায় বসাবেন
+============================================== -->
+<section style="margin-top: 25px;">
+  <h2>🤲 দৈনন্দিন দোয়া ও ডিজিটাল জিকির</h2>
+  <p style="font-size: 14px; color: #666;">নিচের ড্রপডাউন থেকে দোয়া বা জিকির নির্বাচন করুন এবং কাউন্টার দিয়ে হিসাব রাখুন।</p>
+
+  <!-- ড্রপডাউন মেনু -->
+  <div>
+    <select id="duaSelect" class="dua-select-box" onchange="switchDua()">
+      <option value="sleep">১. ঘুমানোর সময় পড়ার দোয়া</option>
+      <option value="wake">২. ঘুম থেকে ওঠার পর পড়ার দোয়া</option>
+      <option value="before_eat">৩. খাবার শুরু করার দোয়া</option>
+      <option value="after_eat">৪. খাবার শেষ করার দোয়া</option>
+      <option value="before_wudu">৫. ওজু শুরু করার দোয়া</option>
+      <option value="after_wudu">৬. ওজু শেষ করার দোয়া</option>
+      <option value="shower">৭. গোসল করার আগের দোয়া/নিয়ত</option>
+      <option value="enter_toilet">৮. বাথরুমে প্রবেশের দোয়া</option>
+      <option value="exit_toilet">৯. বাথরুম থেকে বের হওয়ার দোয়া</option>
+      <option value="subhanallah">১০. জিকির: সুবহানাল্লাহ (Subhanallah)</option>
+      <option value="alhamdulillah">১১. জিকির: আলহামদুলিল্লাহ (Alhamdulillah)</option>
+      <option value="allahuakbar">১২. জিকির: আল্লাহু আকবার (Allahu Akbar)</option>
+      <option value="astagfirullah">১৩. জিকির: আস্তাগফিরুল্লাহ (Astagfirullah)</option>
+    </select>
+  </div>
+
+  <!-- দোয়া ও কাউন্টার কার্ড -->
+  <div class="dua-card">
+    <h3 id="duaTitle">১. ঘুমানোর সময় পড়ার দোয়া</h3>
+    
+    <p class="arabic-text" id="duaArabic">اللَّهُمَّ بِاسْمِكَ أَمُوتُ وَأَحْيَا</p>
+    <p class="pronunciation"><b>উচ্চারণ:</b> <span id="duaPron">আল্লাহুম্মা বিসমিকা আমূতু ওয়া এহ্ইয়া।</span></p>
+    <p class="meaning"><b>অর্থ:</b> <span id="duaMeaning">হে আল্লাহ! আপনার নাম নিয়েই আমি মৃত্যুবরণ করছি (ঘুমাচ্ছি) এবং আপনার নাম নিয়েই জীবিত (জাগ্রত) হচ্ছি।</span></p>
+
+    <!-- জিকির কাউন্টার -->
+    <div class="counter-box">
+      <div class="counter-display" id="counterValue">0</div>
+      <div class="counter-buttons">
+        <button class="btn-count" onclick="addCount()">+ জিকির (গণনা)</button>
+        <button class="btn-reset" onclick="resetCount()">Reset</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ==============================================
+     ৩. এই JavaScript অংশটুকু আপনার <script> ... </script> ট্যাগের ভেতরে বসাবেন
+============================================== -->
+<script>
+const duaData = {
+  sleep: {
+    title: "১. ঘুমানোর সময় পড়ার দোয়া",
+    arabic: "اللَّهُمَّ بِاسْمِكَ أَمُوتُ وَأَحْيَا",
+    pron: "আল্লাহুম্মা বিসমিকা আমূতু ওয়া এহ্ইয়া।",
+    meaning: "হে আল্লাহ! আপনার নাম নিয়েই আমি মৃত্যুবরণ করছি (ঘুমাচ্ছি) এবং আপনার নাম নিয়েই জীবিত (জাগ্রত) হচ্ছি।"
+  },
+  wake: {
+    title: "২. ঘুম থেকে ওঠার পর পড়ার দোয়া",
+    arabic: "الْحَمْدُ لِلَّهِ الَّذِي أَحْيَانَا بَعْدَ مَا أَمَاتَنَا وَإِلَيْهِ النُّشُورُ",
+    pron: "আলহামদু লিল্লাহিল্লাযী আহ ইয়ানা বা'দা মা আমাতানা ওয়া ইলাইহিন নুশূর।",
+    meaning: "সমস্ত প্রশংসা ওই আল্লাহর জন্য, যিনি মৃত্যুর (ঘুমের) পর আমাদের পুনর্জীবন দান করলেন এবং তাঁর দিকেই সবার প্রত্যাবর্তন।"
+  },
+  before_eat: {
+    title: "৩. খাবার শুরু করার দোয়া",
+    arabic: "بِسْمِ اللهِ وَعَلَى بَرَكَةِ اللهِ",
+    pron: "বিসমিল্লাহি ওয়া 'আলা বারাকাতিল্লাহ।",
+    meaning: "আল্লাহর নামে এবং আল্লাহর বরকতের ওপর ভিত্তি করে খাওয়া শুরু করছি।"
+  },
+  after_eat: {
+    title: "৪. খাবার শেষ করার দোয়া",
+    arabic: "الْحَمْدُ لِلَّهِ الَّذِي أَطْعَمَنَا وَسَقَانَا وَجَعَلَنَا مِنَ الْمُسْلِمِينَ",
+    pron: "আলহামদু লিল্লাহিল্লাযী আত'অমানা ওয়া সাক্বানা ওয়া জা'আলানা মিনাল মুসলিমীন।",
+    meaning: "সমস্ত প্রশংসা আল্লাহর জন্য, যিনি আমাদের খাইয়েছেন, পান করিয়েছেন এবং মুসলমানদের অন্তর্ভুক্ত করেছেন।"
+  },
+  before_wudu: {
+    title: "৫. ওজু শুরু করার দোয়া",
+    arabic: "بِسْمِ اللهِ الرَّحْمَنِ الرَّحِيمِ",
+    pron: "বিসমিল্লাহির রহমানির রাহিম।",
+    meaning: "পরম করুণাময় অসীম দয়ালু আল্লাহর নামে শুরু করছি।"
+  },
+  after_wudu: {
+    title: "৬. ওজু শেষ করার দোয়া",
+    arabic: "أَشْهَدُ أَنْ لاَ إِلَهَ إِلاَّ اللَّهُ وَأَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ",
+    pron: "আশহাদু আল-লা ইলাহা ইল্লাল্লাহু ওয়া আশহাদু আন্না মুহাম্মাদান 'আবদুহু ওয়া রাসূলুহু।",
+    meaning: "আমি সাক্ষ্য দিচ্ছি যে আল্লাহ ছাড়া কোনো উপাস্য নেই এবং মুহাম্মদ (সাঃ) তাঁর বান্দা ও রাসূল।"
+  },
+  shower: {
+    title: "৭. গোসল করার আগের দোয়া/নিয়ত",
+    arabic: "نَوَيْتُ الْغُسْلَ لِرَفْعِ الْجَنَابَةِ",
+    pron: "নাওয়াইতুল গুসলা লিরাফ'ইল জানাবাত।",
+    meaning: "আমি পবিত্রতা অর্জনের উদ্দেশ্যে গোসলের নিয়ত করছি।"
+  },
+  enter_toilet: {
+    title: "৮. বাথরুমে প্রবেশের দোয়া",
+    arabic: "اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْخُبُثِ وَالْخَبَائِثِ",
+    pron: "আল্লাহুম্মা ইন্নি আ'উযু বিকামিনাল খুবুসি ওয়াল খাবায়িস।",
+    meaning: "হে আল্লাহ! আমি আপনার কাছে অপবিত্র শয়তানের অনিষ্ট থেকে আশ্রয় চাচ্ছি।"
+  },
+  exit_toilet: {
+    title: "৯. বাথরুম থেকে বের হওয়ার দোয়া",
+    arabic: "غُفْرَانَكَ ، الْحَمْدُ لِلَّهِ الَّذِي أَذْهَبَ عَنِّي الأَذَى وَعَافَانِي",
+    pron: "গুফরানাকা, আলহামদু লিল্লাহিল্লাযী আজহাবা 'আন্নিল আজা ওয়া 'আফানী।",
+    meaning: "হে আল্লাহ! আমি আপনার কাছে ক্ষমা চাই। সমস্ত প্রশংসা আল্লাহর যিনি আমার কষ্ট দূর করেছেন এবং আমাকে সুস্থতা দিয়েছেন।"
+  },
+  subhanallah: {
+    title: "১০. জিকির: সুবহানাল্লাহ",
+    arabic: "سُبْحَانَ اللهِ",
+    pron: "সুবহানাল্লাহ।",
+    meaning: "আল্লাহ অতি পবিত্র।"
+  },
+  alhamdulillah: {
+    title: "১১. জিকির: আলহামদুলিল্লাহ",
+    arabic: "الْحَمْدُ لِلَّهِ",
+    pron: "আলহামদুলিল্লাহ।",
+    meaning: "সমস্ত প্রশংসা একমাত্র আল্লাহর জন্য।"
+  },
+  allahuakbar: {
+    title: "১২. জিকির: আল্লাহু আকবার",
+    arabic: "اللهُ أَكْبَرُ",
+    pron: "আল্লাহু আকবার।",
+    meaning: "আল্লাহ সবচেয়ে মহান।"
+  },
+  astagfirullah: {
+    title: "১৩. জিকির: আস্তাগফিরুল্লাহ",
+    arabic: "أَسْتَغْفِرُ اللهَ",
+    pron: "আস্তাগফিরুল্লাহ।",
+    meaning: "আমি আল্লাহর কাছে ক্ষমা প্রার্থনা করছি।"
+  }
+};
+
+let currentCount = 0;
+
+function switchDua() {
+  const selectedKey = document.getElementById("duaSelect").value;
+  const selectedDua = duaData[selectedKey];
+
+  document.getElementById("duaTitle").innerText = selectedDua.title;
+  document.getElementById("duaArabic").innerText = selectedDua.arabic;
+  document.getElementById("duaPron").innerText = selectedDua.pron;
+  document.getElementById("duaMeaning").innerText = selectedDua.meaning;
+
+  resetCount();
+}
+
+function addCount() {
+  currentCount++;
+  document.getElementById("counterValue").innerText = currentCount;
+  if (navigator.vibrate) {
+    navigator.vibrate(30);
+  }
+}
+
+function resetCount() {
+  currentCount = 0;
+  document.getElementById("counterValue").innerText = currentCount;
+}
+</script>
+  
+
     #progressFill {
       height: 100%;
       width: 0%;
