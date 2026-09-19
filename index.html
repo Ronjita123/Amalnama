@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+     <!DOCTYPE html>
 <html lang="bn">
 <head>
   <meta charset="UTF-8">
@@ -241,34 +241,36 @@
       flex: 1;
     }
 
-    /* ফুটার */
+    /* ফুটার ডিজাইন */
     footer {
       background: #0b5d3b;
       color: white;
       text-align: center;
-      padding: 25px 15px;
+      padding: 30px 20px;
       margin-top: 50px;
-      border-radius: 20px 20px 0 0;
+      border-radius: 25px 25px 0 0;
     }
 
-    footer h3 {
-      font-size: 18px;
-      margin-bottom: 8px;
-      color: #a7f3d0;
-    }
-
-    footer p {
+    .islamic-message {
       font-size: 14px;
-      opacity: 0.9;
-      line-height: 1.6;
+      color: #e6f4ea;
+      line-height: 1.7;
+      margin-bottom: 20px;
+      font-style: italic;
     }
 
     .dev-credits {
-      margin-top: 12px;
-      padding-top: 12px;
-      border-top: 1px solid #15803d;
+      padding-top: 15px;
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
       font-size: 13px;
       color: #d1fae5;
+      font-weight: 300;
+      line-height: 1.8;
+    }
+
+    .dev-credits b {
+      color: #ffffff;
+      font-weight: 600;
     }
   </style>
 </head>
@@ -302,35 +304,35 @@
       <div class="tracker-info">
         <h3>ফজর</h3>
       </div>
-      <button class="btn-complete" onclick="toggleTask(this)">সম্পন্ন</button>
+      <button class="btn-complete" data-task="fajr" onclick="toggleTask(this)">সম্পন্ন</button>
     </div>
 
     <div class="tracker-card">
       <div class="tracker-info">
         <h3>যোহর</h3>
       </div>
-      <button class="btn-complete" onclick="toggleTask(this)">সম্পন্ন</button>
+      <button class="btn-complete" data-task="dhuhr" onclick="toggleTask(this)">সম্পন্ন</button>
     </div>
 
     <div class="tracker-card">
       <div class="tracker-info">
         <h3>আসর</h3>
       </div>
-      <button class="btn-complete" onclick="toggleTask(this)">সম্পন্ন</button>
+      <button class="btn-complete" data-task="asr" onclick="toggleTask(this)">সম্পন্ন</button>
     </div>
 
     <div class="tracker-card">
       <div class="tracker-info">
         <h3>মাগরিব</h3>
       </div>
-      <button class="btn-complete" onclick="toggleTask(this)">সম্পন্ন</button>
+      <button class="btn-complete" data-task="maghrib" onclick="toggleTask(this)">সম্পন্ন</button>
     </div>
 
     <div class="tracker-card">
       <div class="tracker-info">
         <h3>এশা</h3>
       </div>
-      <button class="btn-complete" onclick="toggleTask(this)">সম্পন্ন</button>
+      <button class="btn-complete" data-task="isha" onclick="toggleTask(this)">সম্পন্ন</button>
     </div>
 
     <!-- অতিরিক্ত আমল -->
@@ -341,7 +343,7 @@
         <h3>কুরআন তিলাওয়াত</h3>
         <p>আজ কুরআন তিলাওয়াত করার লক্ষ্য রাখুন।</p>
       </div>
-      <button class="btn-complete" onclick="toggleTask(this)">সম্পন্ন</button>
+      <button class="btn-complete" data-task="quran" onclick="toggleTask(this)">সম্পন্ন</button>
     </div>
 
     <div class="tracker-card">
@@ -349,7 +351,7 @@
         <h3>ভালো কাজ</h3>
         <p>আজ অন্তত একটি ভালো কাজ করার চেষ্টা করুন।</p>
       </div>
-      <button class="btn-complete" onclick="toggleTask(this)">সম্পন্ন</button>
+      <button class="btn-complete" data-task="good_deed" onclick="toggleTask(this)">সম্পন্ন</button>
     </div>
 
     <!-- জিকির সেকশন -->
@@ -454,28 +456,69 @@
 
   <!-- ফুটার -->
   <footer>
-    <h3>Amalnama © 2026</h3>
-    <p>আপনার প্রতিদিনের আমল ও ইবাদত সহজ করার জন্য নির্মিত।</p>
+    <p class="islamic-message">
+      "আসসালামু আলাইকুম। আসুন, আমরা সবাই মিলে মহান আল্লাহর দেওয়া বিধান অনুযায়ী জীবন গড়ি এবং প্রতিদিনের ছোট ছোট নেক আমল ও জিকিরের মাধ্যমে নিজেদের ঈমানকে সমৃদ্ধ করি।"
+    </p>
+
     <div class="dev-credits">
-      <p><b>ওয়েব ডেভেলপার সম্পর্কিত তথ্য:</b> মোছাঃ রঞ্জিতা আক্তার রুনা</p>
-      <p><b>পিতা:</b> মোঃ রবিউল ইসলাম | <b>মাতা:</b> লাকি বেগম</p>
+      <p><b>ওয়েব ডেভেলপার তথ্য:</b> মোছাঃ রনজিতা আক্তার রুনা</p>
+      <p><b>পিতা:</b> মোঃ রবিউল ইসলাম &nbsp;|&nbsp; <b>মাতা:</b> মোছাঃ লাকি বেগম</p>
     </div>
   </footer>
 
   <script>
+    window.onload = function() {
+      // ১. জিকির লোড (অটো-রিসেট হবে না)
+      const zikirIds = ['count-subhanallah', 'count-alhamdulillah', 'count-allahuakbar', 'count-astagfirullah'];
+      zikirIds.forEach(id => {
+        let savedValue = localStorage.getItem(id);
+        if (savedValue !== null) {
+          document.getElementById(id).innerText = savedValue;
+        }
+      });
+
+      // ২. নতুন দিন চেক করা (নামাজ ও আমল রিসেটের জন্য)
+      const todayDate = new Date().toDateString();
+      const lastSavedDate = localStorage.getItem('last_active_date');
+
+      if (lastSavedDate !== todayDate) {
+        localStorage.setItem('last_active_date', todayDate);
+        const taskButtons = document.querySelectorAll('.btn-complete');
+        taskButtons.forEach(btn => {
+          let taskId = btn.getAttribute('data-task');
+          localStorage.removeItem('task_' + taskId);
+        });
+      } else {
+        const taskButtons = document.querySelectorAll('.btn-complete');
+        taskButtons.forEach(btn => {
+          let taskId = btn.getAttribute('data-task');
+          let savedStatus = localStorage.getItem('task_' + taskId);
+          if (savedStatus === 'done') {
+            btn.classList.add('done');
+            btn.innerText = '✓ আদায় হয়েছে';
+          }
+        });
+      }
+
+      updateProgress();
+    };
+
     // নামাজ ও আমল সম্পূর্ণ করার ফাংশন
     function toggleTask(button) {
+      let taskId = button.getAttribute('data-task');
       if (button.classList.contains('done')) {
         button.classList.remove('done');
         button.innerText = 'সম্পন্ন';
+        localStorage.setItem('task_' + taskId, 'pending');
       } else {
         button.classList.add('done');
         button.innerText = '✓ আদায় হয়েছে';
+        localStorage.setItem('task_' + taskId, 'done');
       }
       updateProgress();
     }
 
-    // অগ্রগতি পার্সেন্টেজ হিসাব করার ফাংশন
+    // অগ্রগতি হিসাব করার ফাংশন
     function updateProgress() {
       const allButtons = document.querySelectorAll('.btn-complete');
       const completedButtons = document.querySelectorAll('.btn-complete.done');
@@ -489,20 +532,24 @@
       document.getElementById('progressPercent').innerText = percentage + '%';
     }
 
-    // জিকিরের সংখ্যা বাড়ানোর ফাংশন
+    // জিকিরের সংখ্যা বাড়ানো
     function increaseCount(id) {
       let countElement = document.getElementById(id);
       let currentVal = parseInt(countElement.innerText);
-      countElement.innerText = currentVal + 1;
+      let newVal = currentVal + 1;
+      
+      countElement.innerText = newVal;
+      localStorage.setItem(id, newVal);
 
       if (navigator.vibrate) {
         navigator.vibrate(35);
       }
     }
 
-    // জিকির রিসেট করার ফাংশন
+    // জিকির রিসেট করা
     function resetSingleCount(id) {
       document.getElementById(id).innerText = 0;
+      localStorage.setItem(id, 0);
     }
   </script>
 </body>
