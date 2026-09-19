@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Amalnama - আমলনামা</title>
+  <title>Amalnama - Islamic Daily Companion</title>
 
   <style>
     * {
@@ -15,16 +15,17 @@
     }
 
     body {
-      background: #f5f8f5;
+      background: #f5f8f6;
       color: #173b2b;
+      padding-bottom: 30px;
     }
 
     header {
-      background: linear-gradient(135deg, #0d5138, #1b7653);
+      background: linear-gradient(135deg, #075c38, #13865b);
       color: white;
-      padding: 28px 20px;
       text-align: center;
-      border-radius: 0 0 30px 30px;
+      padding: 30px 20px;
+      border-radius: 0 0 28px 28px;
     }
 
     header h1 {
@@ -47,91 +48,451 @@
       background: white;
       padding: 22px;
       border-radius: 20px;
-      margin-top: -5px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.07);
-      text-align: center;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.06);
     }
 
     .welcome h2 {
-      color: #125b3e;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
+      color: #075c38;
     }
 
     .welcome p {
-      color: #64756d;
-      line-height: 1.7;
+      color: #555;
+      line-height: 1.6;
+    }
+
+    .progress-box {
+      background: #e6f5ed;
+      padding: 18px;
+      border-radius: 18px;
+      margin-top: 15px;
+    }
+
+    .progress-title {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    .progress-bar {
+      height: 12px;
+      background: #d1e5da;
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    #progressFill {
+      height: 100%;
+      width: 0%;
+      background: #0b7d4f;
+      border-radius: 20px;
+      transition: 0.3s;
     }
 
     .section-title {
-      margin: 30px 0 15px;
-      font-size: 23px;
-      color: #125b3e;
+      margin: 25px 0 12px;
+      color: #075c38;
     }
 
-    .cards {
+    .grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 15px;
+      gap: 14px;
     }
 
     .card {
       background: white;
+      padding: 18px;
       border-radius: 18px;
-      padding: 20px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.06);
-      cursor: pointer;
-      transition: 0.2s;
-    }
-
-    .card:hover {
-      transform: translateY(-3px);
-    }
-
-    .icon {
-      font-size: 32px;
-      margin-bottom: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
     }
 
     .card h3 {
-      color: #145c40;
-      margin-bottom: 7px;
+      color: #075c38;
+      margin-bottom: 8px;
     }
 
     .card p {
-      color: #718078;
+      color: #666;
       font-size: 14px;
       line-height: 1.5;
     }
 
-    .amal-card {
-      background: linear-gradient(135deg, #e5f6ed, #ffffff);
-      border: 1px solid #cce9da;
+    .prayer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: 1px solid #eee;
     }
 
-    .progress-box {
-      background: white;
-      padding: 22px;
+    .prayer:last-child {
+      border-bottom: none;
+    }
+
+    .prayer-name {
+      font-weight: bold;
+    }
+
+    .check-btn {
+      border: none;
+      background: #e6f5ed;
+      color: #075c38;
+      padding: 8px 14px;
       border-radius: 20px;
-      margin-top: 25px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+      cursor: pointer;
+      font-weight: bold;
     }
 
-    .progress-bar {
+    .check-btn.done {
+      background: #075c38;
+      color: white;
+    }
+
+    .zikr {
+      text-align: center;
+    }
+
+    #zikrCount {
+      font-size: 45px;
+      font-weight: bold;
+      color: #075c38;
+      margin: 15px;
+    }
+
+    .zikr button {
+      border: none;
+      background: #075c38;
+      color: white;
+      padding: 12px 25px;
+      border-radius: 25px;
+      font-size: 16px;
+      cursor: pointer;
+      margin: 4px;
+    }
+
+    .zikr .reset {
+      background: #ddd;
+      color: #333;
+    }
+
+    .reminder {
+      background: linear-gradient(135deg, #fff7d6, #fff);
+      border-left: 5px solid #d6a800;
+      padding: 18px;
+      border-radius: 15px;
+      line-height: 1.6;
+    }
+
+    .dua {
+      background: #f0f8f4;
+      padding: 18px;
+      border-radius: 16px;
+      line-height: 1.8;
+      text-align: center;
+    }
+
+    .goal {
+      margin-top: 15px;
+    }
+
+    .goal label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+
+    .goal input {
       width: 100%;
-      height: 12px;
-      background: #e4ebe7;
-      border-radius: 20px;
-      overflow: hidden;
-      margin-top: 12px;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      outline: none;
     }
 
-    .progress {
-      width: 35%;
-      height: 100%;
-      background: #168157;
-      border-radius: 20px;
+    .save-btn {
+      margin-top: 10px;
+      width: 100%;
+      border: none;
+      background: #075c38;
+      color: white;
+      padding: 12px;
+      border-radius: 12px;
+      font-size: 15px;
+      cursor: pointer;
     }
 
-    .quote {
-      background: #fffdf1;
-      border-left: 5px solid #d
+    footer {
+      text-align: center;
+      margin-top: 30px;
+      color: #777;
+      font-size: 13px;
+    }
+
+    @media (max-width: 600px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      header h1 {
+        font-size: 27px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>🌙 Amalnama</h1>
+    <p>আপনার প্রতিদিনের ইসলামিক সঙ্গী</p>
+  </header>
+
+  <div class="container">
+
+    <div class="welcome">
+      <h2>আসসালামু আলাইকুম 🌿</h2>
+      <p>
+        আজকের ভালো কাজগুলো মনে রাখুন, নামাজ ও আমল ট্র্যাক করুন
+        এবং প্রতিদিন নিজেকে আরও ভালো করার চেষ্টা করুন।
+      </p>
+
+      <div class="progress-box">
+        <div class="progress-title">
+          <span>আজকের অগ্রগতি</span>
+          <span id="progressText">0%</span>
+        </div>
+
+        <div class="progress-bar">
+          <div id="progressFill"></div>
+        </div>
+      </div>
+
+      <div class="goal">
+        <label>🎯 আজকের Daily Goal</label>
+        <input
+          type="text"
+          id="dailyGoal"
+          placeholder="আজকের লক্ষ্য লিখুন..."
+        >
+        <button class="save-btn" onclick="saveGoal()">
+          লক্ষ্য সংরক্ষণ করুন
+        </button>
+      </div>
+    </div>
+
+    <h2 class="section-title">🕌 আজকের নামাজ</h2>
+
+    <div class="card">
+
+      <div class="prayer">
+        <span class="prayer-name">ফজর</span>
+        <button class="check-btn" onclick="togglePrayer(this)">সম্পন্ন</button>
+      </div>
+
+      <div class="prayer">
+        <span class="prayer-name">যোহর</span>
+        <button class="check-btn" onclick="togglePrayer(this)">সম্পন্ন</button>
+      </div>
+
+      <div class="prayer">
+        <span class="prayer-name">আসর</span>
+        <button class="check-btn" onclick="togglePrayer(this)">সম্পন্ন</button>
+      </div>
+
+      <div class="prayer">
+        <span class="prayer-name">মাগরিব</span>
+        <button class="check-btn" onclick="togglePrayer(this)">সম্পন্ন</button>
+      </div>
+
+      <div class="prayer">
+        <span class="prayer-name">এশা</span>
+        <button class="check-btn" onclick="togglePrayer(this)">সম্পন্ন</button>
+      </div>
+
+    </div>
+
+    <h2 class="section-title">📖 আজকের আমল</h2>
+
+    <div class="grid">
+
+      <div class="card">
+        <h3>📖 কুরআন</h3>
+        <p>আজ কুরআন তিলাওয়াত করার লক্ষ্য রাখুন।</p>
+        <button class="check-btn" onclick="togglePrayer(this)">
+          সম্পন্ন
+        </button>
+      </div>
+
+      <div class="card">
+        <h3>🤲 দোয়া</h3>
+        <p>আল্লাহর কাছে নিজের ও অন্যদের জন্য দোয়া করুন।</p>
+        <button class="check-btn" onclick="togglePrayer(this)">
+          সম্পন্ন
+        </button>
+      </div>
+
+      <div class="card">
+        <h3>📿 যিকির</h3>
+        <p>নিয়মিত যিকির করার চেষ্টা করুন।</p>
+        <button class="check-btn" onclick="togglePrayer(this)">
+          সম্পন্ন
+        </button>
+      </div>
+
+      <div class="card">
+        <h3>❤️ ভালো কাজ</h3>
+        <p>আজ অন্তত একটি ভালো কাজ করার চেষ্টা করুন।</p>
+        <button class="check-btn" onclick="togglePrayer(this)">
+          সম্পন্ন
+        </button>
+      </div>
+
+    </div>
+
+    <h2 class="section-title">📿 যিকির কাউন্টার</h2>
+
+    <div class="card zikr">
+
+      <p>যিকির গুনতে নিচের বোতামে চাপ দিন</p>
+
+      <div id="zikrCount">0</div>
+
+      <button onclick="increaseZikr()">+ যিকির</button>
+
+      <button class="reset" onclick="resetZikr()">
+        Reset
+      </button>
+
+    </div>
+
+    <h2 class="section-title">🌿 আজকের স্মরণ</h2>
+
+    <div class="reminder">
+      <strong>আজকের Reminder:</strong><br>
+      প্রতিদিন ছোট ছোট ভালো কাজও গুরুত্বপূর্ণ।
+      নিজের আমল নিয়মিত করার চেষ্টা করুন।
+    </div>
+
+    <h2 class="section-title">🤲 দোয়া</h2>
+
+    <div class="dua">
+      <strong>رَبِّ زِدْنِي عِلْمًا</strong>
+      <br><br>
+      “হে আমার রব, আমার জ্ঞান বৃদ্ধি করুন।”
+    </div>
+
+    <h2 class="section-title">✨ আরও কিছু</h2>
+
+    <div class="grid">
+
+      <div class="card">
+        <h3>📊 Progress</h3>
+        <p>আজ কতগুলো আমল সম্পন্ন করেছেন তা উপরে দেখতে পারবেন।</p>
+      </div>
+
+      <div class="card">
+        <h3>🧠 ইসলামিক Quiz</h3>
+        <p>পরবর্তী ভার্সনে এখানে ছোট ইসলামিক কুইজ যোগ করা হবে।</p>
+      </div>
+
+    </div>
+
+    <footer>
+      Amalnama © 2026<br>
+      Islamic Daily Companion
+    </footer>
+
+  </div>
+
+  <script>
+
+    let completed = 0;
+
+    const totalTasks = 9;
+
+    function togglePrayer(button) {
+
+      if (button.classList.contains("done")) {
+
+        button.classList.remove("done");
+        button.innerText = "সম্পন্ন";
+        completed--;
+
+      } else {
+
+        button.classList.add("done");
+        button.innerText = "✓ সম্পন্ন";
+        completed++;
+
+      }
+
+      updateProgress();
+    }
+
+    function updateProgress() {
+
+      let percentage =
+        Math.round((completed / totalTasks) * 100);
+
+      document.getElementById("progressFill").style.width =
+        percentage + "%";
+
+      document.getElementById("progressText").innerText =
+        percentage + "%";
+    }
+
+    let zikr = 0;
+
+    function increaseZikr() {
+
+      zikr++;
+
+      document.getElementById("zikrCount").innerText =
+        zikr;
+    }
+
+    function resetZikr() {
+
+      zikr = 0;
+
+      document.getElementById("zikrCount").innerText =
+        zikr;
+    }
+
+    function saveGoal() {
+
+      const goal =
+        document.getElementById("dailyGoal").value;
+
+      if (goal.trim() === "") {
+
+        alert("দয়া করে আপনার আজকের লক্ষ্য লিখুন।");
+
+      } else {
+
+        localStorage.setItem("dailyGoal", goal);
+
+        alert("আপনার Daily Goal সংরক্ষণ করা হয়েছে।");
+      }
+    }
+
+    window.onload = function() {
+
+      const savedGoal =
+        localStorage.getItem("dailyGoal");
+
+      if (savedGoal) {
+
+        document.getElementById("dailyGoal").value =
+          savedGoal;
+      }
+
+    };
+
+  </script>
+
+</body>
+  </html>
